@@ -39,3 +39,9 @@ python pull_and_tag.py --source-namespace bitnami --target-namespace infortrend
 - 如果未提供 `--no-pull` 參數，將在標記前拉取映像檔。
 
 
+# Check Docker Tag
+## 檢查 Docker 標籤是否存在
+
+```bash
+python3 check_docker_tag.py bitnami/os-shell 11-debian-11-r90
+```
