@@ -39,9 +39,27 @@ python pull_and_tag.py --source-namespace bitnami --target-namespace infortrend
 - 如果未提供 `--no-pull` 參數，將在標記前拉取映像檔。
 
 
-# Check Docker Tag
-## 檢查 Docker 標籤是否存在
+# 檢查 Docker 標籤
+## 如何確認 Docker 標籤是否存在
+
+此部分說明如何使用 `check_docker_tag.py` 腳本來檢查特定的 Docker 標籤是否存在於 Docker Hub 上。這對於確保所需的映像檔可用性非常重要。
+
+### 執行範例
+
+以下範例展示如何檢查 `bitnami/os-shell` 映像檔的 `11-debian-11-r90` 標籤是否存在：
+
+## Scan and Rename Helm Chart Images
+`scan_then_rename.py` 是一個用於掃描 Helm 圖表中的 Docker 映像檔並重新命名的工具。此腳本會先執行 `scan_helm_images.py` 來檢查圖表中的映像檔標籤是否存在，然後在掃描成功的情況下，執行 `rename_bitnami_images.py` 來將映像檔的命名空間從 `bitnami` 變更為 `bitnamilegacy`。
+
+### 使用方法
+
+1. 執行 `scan_then_rename.py` 腳本，並指定 Helm 圖表的目錄路徑。
+2. 腳本會先掃描指定目錄下的 Helm 圖表，檢查所有 Docker 映像檔標籤是否存在。
+3. 如果掃描成功，腳本會將所有 `bitnami` 命名空間的映像檔重新命名為 `bitnamilegacy`。
+4. 如果掃描失敗，腳本將跳過重新命名步驟。
+
+### 執行範例
 
 ```bash
-python3 check_docker_tag.py bitnami/os-shell 11-debian-11-r90
+python3 scan_then_rename.py /root/app/manufacture/kafka/kafka
 ```
